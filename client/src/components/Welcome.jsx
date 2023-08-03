@@ -22,14 +22,12 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 
 const Welcome = () => {
 
-    const { connectWallet } = useContext(EventContext);   
+    const { connectWallet, info, sendInformation, handleChange  } = useContext(EventContext);   
 
-    const handleSubmitDetails = () => {
-
-    }
-
-    const handleInfo = () => {
-
+    const handleSubmitDetails = (e) => {
+        const {nameOfTheEvent,eventDescription,setLimitPeople,name,age,occupation,city,email} = info;
+        e.preventDefault();
+        sendInformation();
     }
 
     return (
@@ -88,26 +86,14 @@ const Welcome = () => {
                         </div>
                     </div>
                     <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-                        <Input placeholder="Name of the Event" name="nameOfTheEvent" type="text" handleChange={() => {}} />
-                        <Input placeholder="Event Description" name="eventDescription" type="text" handleChange={() => {}} />
-                        <Input placeholder="Set Limit People" name="setLimitPeople" type="text" handleChange={() => {}} />
-                        {false ?(
-                            <Loader/>
-                        ) :(
-                            <button
-                                type="button"
-                                onClick={handleInfo}
-                                className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-                            >
-                                Enter Event Info
-                            </button>
-                        )}
-
-                        <Input placeholder="Your Name" name="name" type="text" handleChange={() => {}} />
-                        <Input placeholder="Your Age" name="age" type="number" handleChange={() => {}} />
-                        <Input placeholder="Your Occupation" name="occupation" type="text" handleChange={() => {}} />
-                        <Input placeholder="Your City" name="city" type="text" handleChange={() => {}} />
-                        <Input placeholder="Email" name="email" type="text" handleChange={() => {}} />
+                        <Input placeholder="Name of the Event" name="nameOfTheEvent" type="text" handleChange={handleChange} />
+                        <Input placeholder="Event Description" name="eventDescription" type="text" handleChange={handleChange} />
+                        <Input placeholder="Set Limit People" name="setLimitPeople" type="number" handleChange={handleChange} />
+                        <Input placeholder="Your Name" name="name" type="text" handleChange={handleChange} />
+                        <Input placeholder="Your Age" name="age" type="number" handleChange={handleChange} />
+                        <Input placeholder="Your Occupation" name="occupation" type="text" handleChange={handleChange} />
+                        <Input placeholder="Your City" name="city" type="text" handleChange={handleChange} />
+                        <Input placeholder="Email" name="email" type="text" handleChange={handleChange} />
                         {false ?(
                             <Loader/>
                         ) :(
