@@ -24,10 +24,13 @@ const Welcome = () => {
 
     const { connectWallet } = useContext(EventContext);   
 
-    const handleSubmit = () => {
+    const handleSubmitDetails = () => {
 
     }
 
+    const handleInfo = () => {
+
+    }
 
     return (
         <div className="flex w-full justify-center items-center">
@@ -88,21 +91,32 @@ const Welcome = () => {
                         <Input placeholder="Name of the Event" name="nameOfTheEvent" type="text" handleChange={() => {}} />
                         <Input placeholder="Event Description" name="eventDescription" type="text" handleChange={() => {}} />
                         <Input placeholder="Set Limit People" name="setLimitPeople" type="text" handleChange={() => {}} />
-                        <Input placeholder="Your Name" name="name" type="text" handleChange={() => {}} />
-                        <Input placeholder="Your age" name="age" type="number" handleChange={() => {}} />
-                        <Input placeholder="Your Occupation" name="occupation" type="text" handleChange={() => {}} />
-                        <Input placeholder="Your City" name="city" type="text" handleChange={() => {}} />
-                        <Input placeholder="Email" name="email" type="text" handleChange={() => {}} />
-                        <div className="h-[1px] w-full bg-gray-400 my-2" />
                         {false ?(
                             <Loader/>
                         ) :(
                             <button
                                 type="button"
-                                onClick={handleSubmit}
+                                onClick={handleInfo}
                                 className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
                             >
-                                Submit
+                                Enter Event Info
+                            </button>
+                        )}
+
+                        <Input placeholder="Your Name" name="name" type="text" handleChange={() => {}} />
+                        <Input placeholder="Your Age" name="age" type="number" handleChange={() => {}} />
+                        <Input placeholder="Your Occupation" name="occupation" type="text" handleChange={() => {}} />
+                        <Input placeholder="Your City" name="city" type="text" handleChange={() => {}} />
+                        <Input placeholder="Email" name="email" type="text" handleChange={() => {}} />
+                        {false ?(
+                            <Loader/>
+                        ) :(
+                            <button
+                                type="button"
+                                onClick={handleSubmitDetails}
+                                className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                            >
+                                Submit Your Details
                             </button>
                         )}
                     </div>
