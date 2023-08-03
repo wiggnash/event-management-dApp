@@ -22,10 +22,7 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 
 const Welcome = () => {
 
-    const { value } = useContext(EventContext);    
-    const connectWallet = () => {
-
-    }
+    const { connectWallet } = useContext(EventContext);   
 
     const handleSubmit = () => {
 
