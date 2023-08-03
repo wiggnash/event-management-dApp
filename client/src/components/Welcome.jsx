@@ -4,6 +4,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 import Loader from "./Loader";
+import { EventContext } from "../context/EventContext";
 
 const companyCommonStyles = 'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white';
 
@@ -20,6 +21,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 
 
 const Welcome = () => {
+
+    const { value } = useContext(EventContext);    
     const connectWallet = () => {
 
     }
@@ -27,6 +30,8 @@ const Welcome = () => {
     const handleSubmit = () => {
 
     }
+
+
     return (
         <div className="flex w-full justify-center items-center">
             <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
@@ -35,7 +40,7 @@ const Welcome = () => {
                         Book Events <br /> around the world
                     </h1>
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-                        Expand the web3 ecosystem. Practicipate and contribute in exciting events.
+                        Expand the web3 ecosystem. Practicipate and contribute to exciting events.
                     </p>
                     <button
                         type="button"
