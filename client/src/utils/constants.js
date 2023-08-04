@@ -5,16 +5,24 @@ export const contractABI = [
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "_nameOfEvent",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
 				"name": "_eventDescription",
 				"type": "string"
 			}
 		],
-		"name": "setEventDetails",
+		"name": "setEventDescription",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_nameOfEvent",
+				"type": "string"
+			}
+		],
+		"name": "setEventName",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -133,21 +141,13 @@ export const contractABI = [
 	},
 	{
 		"inputs": [],
-		"name": "getTotalPeople",
+		"name": "getNumberOfPeople",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "limitPeople",
-		"outputs": [
+			},
 			{
 				"internalType": "uint256",
 				"name": "",
@@ -169,19 +169,7 @@ export const contractABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalPeople",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
-export const contractAddress = '0xbb309ed8E87b9a3405CFfECCE1B3444993F848A5';
+
+export const contractAddress = '0x8A858B094e1Fc1dA35334BA3328202e9Fde4d6d7';

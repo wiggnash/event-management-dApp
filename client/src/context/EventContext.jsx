@@ -7,20 +7,25 @@ export const EventContext = createContext();
 const { ethereum } = window;
 
 const getEthereumContract = () => {
-    const provider = new ethers.BrowserProvider(window.ethereum)
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const eventContract = new ethers.Contract(contractAddress,contractABI,signer);
-    return eventContract;
+    const contract = new ethers.Contract(contractAddress,contractABI,signer);
+    return contract;
 }
 
 
 export const EventProvider = ({ children }) => {
     const [currentAccount,setcurrentAccount] = useState();
-    const [info,setInfo] = useState({nameOfTheEvent:'',eventDescription:'',setLimitPeople:'',name:'',age:'',occupation:'',city:'',email:''});
-
-    const handleChange = (e,name) => {
-        setInfo((prevState) =>({...prevState,[name]:e.target.value}));
-    }
+    const [eventName, setEventName] = useState("");
+    const [description, setDescription] = useState("");
+    const [limitPeopleInEvent, setLimitPeopleInEvent] = useState("");
+    const [personList, setPersonList] = useState([]);
+    // name, age, occupation, city, email
+    const [name, setName] = useState("");
+    const [age, setAge] = useState("");
+    const [occupation, setOccupation] = useState("");
+    const [city, setCity] = useState("");
+    const [email, setEmail] = useState("");
 
     const checkIfWalletIsConnected = async() => {
         try {
@@ -42,25 +47,80 @@ export const EventProvider = ({ children }) => {
         }
     }
 
-    // sending name of the event , description and the total number of people 
-    const sendInformation = async() => {
+    const sendNameOfTheEvent = async() => {
         try {
             if(!ethereum) return alert("Please install metamask");
-            //get the data from the input given
-            const {nameOfTheEvent,eventDescription,setLimitPeople,name,age,occupation,city,email} = info;
-            const eventContract = getEthereumContract();
+            const contract = getEthereumContract();
+            console.log(eventName);
+            const tx = await contract.setEventName(eventName);
+            await tx.wait();
         } catch(error){
             console.log(error);
         }
     }
 
+    // setting the event description of people to the blockchain
+    const sendEventDescription = async() => {
+        try {
+            if(!ethereum) return alert("Please install metamask");
+            const contract = getEthereumContract();
+            console.log(description);
+            const tx = await contract.setEventName(description);
+            await tx.wait();
+
+        } catch(error){
+            console.log(error);
+        }
+    }
+
+    // setting the limit of people to the blockchain
+    const sendLimit = async() => {
+        try {
+            if(!ethereum) return alert("Please install metamask");
+            console.log(limitPeopleInEvent);
+            const contract = getEthereumContract();
+            const tx = await contract.setLimitPeople(limitPeopleInEvent);
+            await tx.wait();
+        } catch(error){
+            console.log(error);
+        }
+    }
+    
+    // sending name of the event , description and the total number of people 
+    const sendPersonDetails = async() => {
+        try {
+            if(!ethereum) return alert("Please install metamask");
+            const contract = getEthereumContract();
+            console.log(`${name} ${age} ${city} ${occupation} ${email}`);
+            const tx = await contract.setPersonDetails(name,age,occupation,city,email);
+            await tx.wait();
+        } catch(error){
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         checkIfWalletIsConnected();
     },[])
 
     return(
-        <EventContext.Provider value = {{ connectWallet, currentAccount, info, sendInformation ,handleChange  }}>
+        <EventContext.Provider value = {{ 
+            connectWallet, 
+            currentAccount,
+            setName,
+            setAge,
+            setOccupation,
+            setCity,
+            setEmail,
+            setEventName,
+            setDescription,
+            setLimitPeopleInEvent,
+            setPersonList,
+            sendNameOfTheEvent,
+            sendEventDescription,
+            sendLimit,
+            sendPersonDetails
+            }}>
             {children}
         </EventContext.Provider>
     )

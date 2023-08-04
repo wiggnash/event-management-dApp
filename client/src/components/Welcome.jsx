@@ -8,27 +8,12 @@ import { EventContext } from "../context/EventContext";
 
 const companyCommonStyles = 'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white';
 
-const Input = ({ placeholder, name, type, value, handleChange }) => (
-    <input
-      placeholder={placeholder}
-      type={type}
-      step="0.0001"
-      value={value}
-      onChange={(e) => handleChange(e, name)}
-      className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
-    />
-  );
-
 
 const Welcome = () => {
 
-    const { connectWallet, info, sendInformation, handleChange  } = useContext(EventContext);   
-
-    const handleSubmitDetails = (e) => {
-        const {nameOfTheEvent,eventDescription,setLimitPeople,name,age,occupation,city,email} = info;
-        e.preventDefault();
-        sendInformation();
-    }
+    const { connectWallet, setEventName, sendNameOfTheEvent,setDescription, 
+        sendEventDescription,setLimitPeopleInEvent,sendLimit, sendPersonDetails,
+        setName,setAge, setOccupation, setCity, setEmail, } = useContext(EventContext);   
 
     return (
         <div className="flex w-full justify-center items-center">
@@ -85,21 +70,64 @@ const Welcome = () => {
                             </div>
                         </div>
                     </div>
+
+
                     <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-                        <Input placeholder="Name of the Event" name="nameOfTheEvent" type="text" handleChange={handleChange} />
-                        <Input placeholder="Event Description" name="eventDescription" type="text" handleChange={handleChange} />
-                        <Input placeholder="Set Limit People" name="setLimitPeople" type="number" handleChange={handleChange} />
-                        <Input placeholder="Your Name" name="name" type="text" handleChange={handleChange} />
-                        <Input placeholder="Your Age" name="age" type="number" handleChange={handleChange} />
-                        <Input placeholder="Your Occupation" name="occupation" type="text" handleChange={handleChange} />
-                        <Input placeholder="Your City" name="city" type="text" handleChange={handleChange} />
-                        <Input placeholder="Email" name="email" type="text" handleChange={handleChange} />
+
+                        <input type='text' placeholder='Name Of the Event' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setEventName(e.target.value))} />
+                        <button
+                            type="button"
+                            onClick={()=>(sendNameOfTheEvent())}
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                        >
+                            Sumbit Name of the Event
+                        </button>
+
+                        <input type='text' placeholder='Event Description' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setDescription(e.target.value))} />
+                        <button
+                            type="button"
+                            onClick={()=>(sendEventDescription())}
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                        >
+                            Sumbit Event Description
+                        </button>
+
+                        <input type='number' placeholder='Limit of People' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setLimitPeopleInEvent(e.target.value))} />
+                        <button
+                            type="button"
+                            onClick={()=>(sendLimit())}
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                        >
+                            Sumbit Limit of the People
+                        </button>
+
+                        <input type='text' placeholder='Name' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setName(e.target.value))} />
+                        <input type='number' placeholder='Age' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setAge(e.target.value))} />
+                        <input type='text' placeholder='City' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setCity(e.target.value))} />
+                        <input type='text' placeholder='Occupation' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setOccupation(e.target.value))} />
+                        <input type='text' placeholder='Email Address' 
+                        className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+                        onChange={(e)=>(setEmail(e.target.value))} />   
                         {false ?(
                             <Loader/>
                         ) :(
                             <button
                                 type="button"
-                                onClick={handleSubmitDetails}
+                                onClick={()=>(sendPersonDetails())}
                                 className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
                             >
                                 Submit Your Details
