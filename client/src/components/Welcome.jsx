@@ -13,7 +13,7 @@ const Welcome = () => {
 
     const { connectWallet, setEventName, sendNameOfTheEvent,setDescription, 
         sendEventDescription,setLimitPeopleInEvent,sendLimit, sendPersonDetails,
-        setName,setAge, setOccupation, setCity, setEmail, } = useContext(EventContext);   
+        setName,setAge, setOccupation, setCity, setEmail,currentAccount} = useContext(EventContext);   
 
     return (
         <div className="flex w-full justify-center items-center">
@@ -61,10 +61,10 @@ const Welcome = () => {
                                 <BsInfoCircle fontSize={17} color="#fff" />
                             </div>
                             <div>
-                               <p className="text-white font-light text-sm">
-                                    Address
+                               <p className="text-white font-light text-sm md:font-bold">
+                                    {`${currentAccount.slice(0,5)}...${currentAccount.slice(currentAccount.length - 4)}`}
                                 </p> 
-                                <p className="text-white font-light text-sm">
+                                <p className="text-white font-light text-sm md:font-bold">
                                     Ethereum
                                 </p> 
                             </div>

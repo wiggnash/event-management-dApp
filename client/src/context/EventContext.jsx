@@ -15,7 +15,7 @@ const getEthereumContract = () => {
 
 
 export const EventProvider = ({ children }) => {
-    const [currentAccount,setcurrentAccount] = useState();
+    const [currentAccount,setCurrentAccount] = useState();
     const [eventName, setEventName] = useState("");
     const [description, setDescription] = useState("");
     const [limitPeopleInEvent, setLimitPeopleInEvent] = useState("");
@@ -119,7 +119,8 @@ export const EventProvider = ({ children }) => {
             sendNameOfTheEvent,
             sendEventDescription,
             sendLimit,
-            sendPersonDetails
+            sendPersonDetails,
+            currentAccount
             }}>
             {children}
         </EventContext.Provider>
